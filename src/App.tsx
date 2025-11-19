@@ -1,7 +1,7 @@
 import './App.css'
-import FloatingLines from './components/FloatingLines'
+import FloatingLines from './components/general/FloatingLines'
 import logo from './assets/react.svg'
-import CardNav from './components/CardNav'
+import CardNav from './components/general/CardNav'
 
 function App() {
     const items = [

@@ -2,6 +2,7 @@ import './App.css'
 import FloatingLines from './components/general/FloatingLines'
 import logo from './assets/react.svg'
 import CardNav from './components/general/CardNav'
+import Home from './components/home/Home'
 
 function App() {
     const items = [
@@ -17,7 +18,7 @@ function App() {
                 }
             ]
         },
-		{
+        {
             label: 'Habilidades',
             bgColor: '#170D27',
             textColor: '#fff',
@@ -40,11 +41,10 @@ function App() {
                     ariaLabel: 'Ir a la sección Proyectos'
                 }
             ]
-        },
-        
+        }
     ]
     return (
-        <>
+        <div className="overflow-x-hidden">
             <div
                 style={{
                     width: '100vw',
@@ -74,13 +74,10 @@ function App() {
                 menuColor="#000"
                 ease="power3.out"
             />
-
-			// Componente de Sobre Mi
-
-			// Componente de Habilidades
-
-			// Componente de Proyectos
-        </>
+            <Home />
+            // Apartado de Sobre Mi // Apartado de Habilidades // Apartado de
+            Proyectos
+        </div>
     )
 }
 

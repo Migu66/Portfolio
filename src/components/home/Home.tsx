@@ -9,7 +9,7 @@ const Home = () => {
             {/* Contenido de texto */}
             <div className="flex-1 max-w-[600px] text-white">
                 <h1 className="text-2xl md:text-3xl lg:text-4xl font-normal mb-4 text-white">
-                    ¡Hola! 👋
+                    ¡Hola! <span className="inline-block animate-wave">👋</span>
                 </h1>
                 <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold mb-6 leading-tight">
                     SOY{' '}

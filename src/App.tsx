@@ -19,8 +19,20 @@ function App() {
             ]
         },
         {
+            label: 'Experiencia',
+            bgColor: '#150D1E',
+            textColor: '#fff',
+            links: [
+                {
+                    label: 'Experiencia',
+                    href: '#experience',
+                    ariaLabel: 'Ir a la sección Experiencia'
+                }
+            ]
+        },
+        {
             label: 'Habilidades',
-            bgColor: '#170D27',
+            bgColor: '#1D0D26',
             textColor: '#fff',
             links: [
                 {
@@ -32,7 +44,7 @@ function App() {
         },
         {
             label: 'Proyectos',
-            bgColor: '#271E37',
+            bgColor: '#250D2E',
             textColor: '#fff',
             links: [
                 {

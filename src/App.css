@@ -164,3 +164,19 @@
     transform-origin: 70% 70%;
     display: inline-block;
 }
+
+.perspective-1000 {
+    perspective: 1000px;
+}
+
+.delay-100 {
+    animation-delay: 0.1s;
+}
+
+.delay-200 {
+    animation-delay: 0.2s;
+}
+
+.delay-300 {
+    animation-delay: 0.3s;
+}

@@ -3,6 +3,10 @@ import FloatingLines from './components/general/FloatingLines'
 import logo from './assets/react.svg'
 import CardNav from './components/general/CardNav'
 import Home from './components/home/Home'
+import About from './components/about/About'
+import Experience from './components/experience/Experience'
+import Skills from './components/skills/Skills'
+import Projects from './components/projects/Projects'
 
 function App() {
     const items = [
@@ -86,9 +90,16 @@ function App() {
                 menuColor="#000"
                 ease="power3.out"
             />
+
             <Home />
-            // Apartado de Sobre Mi // Apartado de Habilidades // Apartado de
-            Proyectos
+
+			<About />
+
+			<Experience />
+
+			<Skills />
+			
+			<Projects />
         </div>
     )
 }

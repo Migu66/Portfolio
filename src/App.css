@@ -121,6 +121,29 @@
         @apply bg-background text-foreground;
     }
 }
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-gray-900);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, rgb(8, 116, 207), rgb(135, 60, 181));
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+        to bottom,
+        rgb(10, 140, 250),
+        rgb(160, 80, 210)
+    );
+}
+
 @keyframes scroll {
     0%,
     100% {

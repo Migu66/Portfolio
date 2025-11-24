@@ -2,7 +2,10 @@ import ProfileCard3D from './ProfileCard3D'
 
 export default function About() {
     return (
-        <section className="relative min-h-screen w-full flex items-center justify-center">
+        <section
+            id="about"
+            className="relative min-h-screen w-full flex items-center justify-center"
+        >
             <div className="px-6 md:px-12 lg:px-24 py-16 w-full">
                 {/* Título con efecto brillante */}
                 <div className="mb-16 lg:pl-25">

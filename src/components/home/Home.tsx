@@ -7,7 +7,7 @@ const Home = () => {
             className="relative w-screen min-h-screen flex flex-col md:flex-row items-center justify-between px-[5%] md:px-[10%] z-1 box-border md:text-left text-center overflow-x-hidden"
         >
             {/* Contenido de texto */}
-            <div className="flex-1 max-w-[600px] text-white">
+            <div className="flex-1 max-w-[600px] text-white mt-40 lg:mt-0">
                 <h1 className="text-2xl md:text-3xl lg:text-4xl font-normal mb-4 text-white">
                     ¡Hola! <span className="inline-block animate-wave">👋</span>
                 </h1>
@@ -29,7 +29,7 @@ const Home = () => {
             </div>
 
             {/* Imagen */}
-            <div className="flex-1 flex justify-center md:justify-end items-center max-w-[1200px] md:pr-8 lg:pr-16">
+            <div className="flex-1 flex justify-center md:justify-end items-center max-w-[1200px] md:pr-8 lg:pr-16 mb-20 lg:mb-0">
                 <img
                     src={chicoEscritorio}
                     alt="Desarrollador trabajando"

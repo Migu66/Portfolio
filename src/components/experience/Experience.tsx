@@ -31,7 +31,7 @@ export default function Experience() {
             <div className="px-6 md:px-12 lg:px-9 py-16 w-full">
                 {/* Título con efecto brillante */}
                 <div className="mb-16 lg:pl-25">
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-linear-to-r from-[#148bdb] to-[#B57EDC] tracking-wider">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-linear-to-r from-[#148bdb] to-[#B57EDC] tracking-wider pb-2">
                         Experiencia Laboral
                     </h2>
                     <div className="h-1 w-24 bg-linear-to-r from-[#148bdb] to-[#B57EDC] mt-4 rounded-full"></div>

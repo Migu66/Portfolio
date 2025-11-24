@@ -35,14 +35,14 @@ function App() {
             ]
         },
         {
-            label: 'Habilidades',
+            label: 'Tecnologías',
             bgColor: '#1D0D26',
             textColor: '#fff',
             links: [
                 {
-                    label: 'Habilidades',
+                    label: 'Tecnologías',
                     href: '#skills',
-                    ariaLabel: 'Ir a la sección Habilidades'
+                    ariaLabel: 'Ir a la sección Tecnologías'
                 }
             ]
         },

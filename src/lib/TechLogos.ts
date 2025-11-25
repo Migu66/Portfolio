@@ -26,6 +26,7 @@ import zustandLogo from '../assets/logos/zustand.png'
 import zodLogo from '../assets/logos/zod.png'
 import postmanLogo from '../assets/logos/postman.png'
 import prismaLogo from '../assets/logos/prisma.png'
+import net from '../assets/logos/NET_Core.png'
 import type { LogoItem } from '../components/skills/LogoLoop'
 
 export const techLogos: LogoItem[] = [
@@ -83,6 +84,12 @@ export const techLogos: LogoItem[] = [
         alt: 'ASP.NET',
         title: 'ASP.NET',
         href: 'https://dotnet.microsoft.com/es-es/apps/aspnet'
+    },
+	{
+		src: net,
+        alt: '.NET Core',
+        title: '.NET Core',
+        href: 'https://dotnet.microsoft.com/en-us/'
     },
     {
         src: sqlLogo,

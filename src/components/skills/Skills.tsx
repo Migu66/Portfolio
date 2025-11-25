@@ -1,4 +1,5 @@
 import LogoLoop from './LogoLoop'
+import SkillsGrid from './SkillsGrid'
 import { techLogos } from '../../lib/TechLogos'
 
 export default function Skills() {
@@ -28,6 +29,9 @@ export default function Skills() {
                     ariaLabel="Technology partners"
                 />
             </div>
+
+            {/* Categorías de habilidades */}
+            <SkillsGrid />
         </section>
     )
 }

@@ -1,6 +1,6 @@
 import './App.css'
 import FloatingLines from './components/general/FloatingLines'
-import logo from './assets/react.svg'
+import logo from './assets/code.png'
 import CardNav from './components/general/CardNav'
 import Home from './components/home/Home'
 import About from './components/about/About'

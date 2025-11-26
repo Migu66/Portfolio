@@ -60,10 +60,10 @@ export default function Experience() {
                                 className="experience-item relative pl-8 md:pl-20"
                             >
                                 {/* Punto en la línea */}
-                                <div className="absolute -left-2 md:left-6 top-2 w-4 h-4 bg-blue-500 rounded-full border-4 border-white shadow-lg"></div>
+                                <div className="absolute -left-2 md:left-6 top-2 w-4 h-4 bg-blue-500 rounded-full border-4 border-white shadow-lg animate-pulse-glow"></div>
 
                                 {/* Contenido */}
-                                <div className="bg-black/40 backdrop-blur-md rounded-lg p-6 border border-white/20 hover:border-[#148bdb]/70 transition-all duration-300 hover:shadow-lg hover:shadow-[#148bdb]/30">
+                                <div className="bg-black/40 backdrop-blur-md rounded-lg p-6 border border-white/20 hover:border-[#148bdb]/70 transition-all duration-500 hover:shadow-lg hover:shadow-[#148bdb]/40 hover:scale-105 hover:-translate-y-2 hover:rotate-1">
                                     <div className="text-sm text-[#148bdb] font-semibold mb-2">
                                         {exp.period}
                                     </div>

@@ -79,7 +79,7 @@ const Home = () => {
                 <h2 className="text-3xl md:text-4xl lg:text-6xl font-bold mb-6 leading-tight">
                     SOY{' '}
                     <span
-                        className="text-[#148bdb]"
+                        className="text-[#148bdb] animate-glow"
                         style={{
                             textShadow:
                                 '0 0 20px rgba(74, 144, 226, 0.8), 0 2px 10px rgba(0, 0, 0, 0.9)'
@@ -88,7 +88,7 @@ const Home = () => {
                         Miguel González Pascual
                     </span>
                 </h2>
-                <p className="text-xl md:text-2xl lg:text-3xl font-light text-[#B57EDC] mb-8">
+                <p className="text-xl md:text-2xl lg:text-3xl font-light text-[#B57EDC] mb-8 bg-gradient-to-r from-[#B57EDC] via-[#148bdb] to-[#B57EDC] bg-clip-text text-transparent animate-gradient">
                     Desarrollador Fullstack
                 </p>
             </div>
@@ -96,12 +96,12 @@ const Home = () => {
             {/* Imagen */}
             <div
                 ref={imageRef}
-                className="flex-1 flex justify-center md:justify-end items-center max-w-[1200px] md:pr-8 lg:pr-16 mb-20 lg:mb-0"
+                className="flex-1 flex justify-center md:justify-end items-center max-w-[1200px] md:pr-8 lg:pr-16 mb-20 lg:mb-0 animate-float-gentle"
             >
                 <img
                     src={chicoEscritorio}
                     alt="Desarrollador trabajando"
-                    className="w-[190%] max-w-[1100px] h-auto object-contain md:translate-x-20 lg:translate-x-75"
+                    className="w-[190%] max-w-[1100px] h-auto object-contain md:translate-x-20 lg:translate-x-75 hover:scale-105 transition-transform duration-500"
                 />
             </div>
 

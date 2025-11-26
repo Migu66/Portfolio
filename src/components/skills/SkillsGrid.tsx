@@ -101,11 +101,16 @@ export default function SkillsGrid() {
                     {skillCategories.map((category, index) => (
                         <div
                             key={index}
-                            className="skill-category bg-linear-to-br from-gray-900/50 to-gray-800/30 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 hover:border-gray-600/50 transition-all duration-300"
+                            className="skill-category bg-linear-to-br from-gray-900/50 to-gray-800/30 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 hover:border-gray-600/50 transition-all duration-500 hover:scale-105 hover:-translate-y-2 hover:shadow-xl hover:shadow-blue-500/20 hover:rotate-1"
+                            style={{
+                                transformStyle: 'preserve-3d',
+                                transition:
+                                    'all 0.5s cubic-bezier(0.4, 0, 0.2, 1)'
+                            }}
                         >
                             <div className="flex items-center gap-3 mb-6">
                                 <div
-                                    className={`h-3 w-3 rounded-full bg-linear-to-r ${category.gradient}`}
+                                    className={`h-3 w-3 rounded-full bg-linear-to-r ${category.gradient} animate-pulse-glow`}
                                 ></div>
                                 <h3 className="text-xl font-bold text-white">
                                     {category.title}
@@ -115,12 +120,12 @@ export default function SkillsGrid() {
                                 {category.skills.map((skill, skillIndex) => (
                                     <div
                                         key={skillIndex}
-                                        className="flex items-center gap-2 bg-gray-800/50 rounded-lg px-4 py-2 border border-gray-700/30 hover:border-gray-600/50 hover:bg-gray-700/50 transition-all duration-300 group"
+                                        className="flex items-center gap-2 bg-gray-800/50 rounded-lg px-4 py-2 border border-gray-700/30 hover:border-gray-600/50 hover:bg-gray-700/50 transition-all duration-300 group hover:scale-110 hover:-translate-y-1 hover:shadow-lg hover:shadow-blue-500/30 cursor-pointer"
                                     >
                                         <img
                                             src={skill.logo}
                                             alt={skill.name}
-                                            className="w-6 h-6 object-contain group-hover:scale-110 transition-transform duration-300"
+                                            className="w-6 h-6 object-contain group-hover:scale-125 group-hover:rotate-12 transition-all duration-300"
                                         />
                                         <span className="text-sm text-gray-300 group-hover:text-white transition-colors duration-300">
                                             {skill.name}

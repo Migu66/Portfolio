@@ -246,3 +246,158 @@
 .animate-float {
     animation: float 6s ease-in-out infinite;
 }
+
+/* Animación de pulso mejorada */
+@keyframes pulse-glow {
+    0%,
+    100% {
+        box-shadow:
+            0 0 5px rgba(20, 139, 219, 0.3),
+            0 0 10px rgba(20, 139, 219, 0.2),
+            0 0 15px rgba(20, 139, 219, 0.1);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow:
+            0 0 15px rgba(20, 139, 219, 0.6),
+            0 0 25px rgba(20, 139, 219, 0.4),
+            0 0 35px rgba(20, 139, 219, 0.2);
+        transform: scale(1.02);
+    }
+}
+
+.animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Animación de brillo */
+@keyframes glow {
+    0%,
+    100% {
+        text-shadow:
+            0 0 10px rgba(20, 139, 219, 0.5),
+            0 0 20px rgba(20, 139, 219, 0.3),
+            0 0 30px rgba(20, 139, 219, 0.2);
+    }
+    50% {
+        text-shadow:
+            0 0 20px rgba(20, 139, 219, 0.8),
+            0 0 30px rgba(20, 139, 219, 0.6),
+            0 0 40px rgba(20, 139, 219, 0.4);
+    }
+}
+
+.animate-glow {
+    animation: glow 2s ease-in-out infinite;
+}
+
+/* Animación de flotación suave */
+@keyframes float-gentle {
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+.animate-float-gentle {
+    animation: float-gentle 3s ease-in-out infinite;
+}
+
+/* Animación de entrada desde abajo */
+@keyframes slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-slide-up {
+    animation: slide-up 0.6s ease-out forwards;
+}
+
+/* Animación de rebote sutil */
+@keyframes bounce-gentle {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.animate-bounce-gentle {
+    animation: bounce-gentle 1s ease-in-out infinite;
+}
+
+/* Animación de rotación 3D */
+@keyframes rotate-3d {
+    0% {
+        transform: perspective(1000px) rotateY(0deg);
+    }
+    100% {
+        transform: perspective(1000px) rotateY(360deg);
+    }
+}
+
+.animate-rotate-3d {
+    animation: rotate-3d 20s linear infinite;
+}
+
+/* Efecto de brillo de fondo */
+@keyframes bg-shine {
+    0% {
+        background-position: -200% center;
+    }
+    100% {
+        background-position: 200% center;
+    }
+}
+
+.animate-bg-shine {
+    background-size: 200% auto;
+    animation: bg-shine 3s linear infinite;
+}
+
+/* Animación de escala en hover */
+.hover-scale {
+    transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+    transform: scale(1.05);
+}
+
+/* Animación de gradiente */
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient-shift 5s ease infinite;
+}
+
+/* Efecto de tilt en hover */
+.tilt-effect {
+    transition: transform 0.3s ease;
+}
+
+.tilt-effect:hover {
+    transform: perspective(1000px) rotateX(5deg) rotateY(5deg);
+}

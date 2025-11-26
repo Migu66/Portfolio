@@ -26,7 +26,7 @@ export default function About() {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center lg:pl-35">
                     {/* Columna izquierda - Texto */}
                     <div ref={cardsRef} className="space-y-8">
-                        <div className="about-card bg-linear-to-r from-[#0D0716]/50 to-[#1D0D26]/30 backdrop-blur-sm p-8 rounded-2xl border border-[#148bdb]/20 hover:border-[#148bdb]/40 transition-all duration-300 shadow-lg hover:shadow-[#148bdb]/20">
+                        <div className="about-card bg-linear-to-r from-[#0D0716]/50 to-[#1D0D26]/30 backdrop-blur-sm p-8 rounded-2xl border border-[#148bdb]/20 hover:border-[#148bdb]/40 transition-all duration-500 shadow-lg hover:shadow-[#148bdb]/30 hover:scale-105 hover:-translate-y-2">
                             <p className="text-gray-200 text-lg md:text-xl leading-relaxed">
                                 Soy{' '}
                                 <span className="text-[#148bdb] font-semibold">
@@ -42,7 +42,7 @@ export default function About() {
                             </p>
                         </div>
 
-                        <div className="about-card bg-linear-to-r from-[#150D1E]/50 to-[#0D0716]/30 backdrop-blur-sm p-8 rounded-2xl border border-[#B57EDC]/20 hover:border-[#B57EDC]/40 transition-all duration-300 shadow-lg hover:shadow-[#B57EDC]/20">
+                        <div className="about-card bg-linear-to-r from-[#150D1E]/50 to-[#0D0716]/30 backdrop-blur-sm p-8 rounded-2xl border border-[#B57EDC]/20 hover:border-[#B57EDC]/40 transition-all duration-500 shadow-lg hover:shadow-[#B57EDC]/30 hover:scale-105 hover:-translate-y-2">
                             <p className="text-gray-200 text-lg md:text-xl leading-relaxed">
                                 Mi stack tecnológico incluye{' '}
                                 <span className="text-[#B57EDC] font-semibold">
@@ -57,7 +57,7 @@ export default function About() {
                             </p>
                         </div>
 
-                        <div className="about-card bg-linear-to-r from-[#1D0D26]/50 to-[#150D1E]/30 backdrop-blur-sm p-8 rounded-2xl border border-[#148bdb]/20 hover:border-[#148bdb]/40 transition-all duration-300 shadow-lg hover:shadow-[#148bdb]/20">
+                        <div className="about-card bg-linear-to-r from-[#1D0D26]/50 to-[#150D1E]/30 backdrop-blur-sm p-8 rounded-2xl border border-[#148bdb]/20 hover:border-[#148bdb]/40 transition-all duration-500 shadow-lg hover:shadow-[#148bdb]/30 hover:scale-105 hover:-translate-y-2">
                             <p className="text-gray-200 text-lg md:text-xl leading-relaxed">
                                 Busco constantemente expandir mis conocimientos
                                 y mantenerme actualizado con las últimas
@@ -75,11 +75,11 @@ export default function About() {
                                 href="https://github.com/Migu66"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group relative p-4 bg-linear-to-r from-[#0D0716]/80 to-[#1D0D26]/80 rounded-xl border border-gray-700 hover:border-[#148bdb] transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-[#148bdb]/50"
+                                className="group relative p-4 bg-linear-to-r from-[#0D0716]/80 to-[#1D0D26]/80 rounded-xl border border-gray-700 hover:border-[#148bdb] transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-[#148bdb]/50 hover:-translate-y-1 hover:rotate-3"
                                 aria-label="GitHub"
                             >
                                 <svg
-                                    className="w-7 h-7 text-gray-400 group-hover:text-white transition-colors"
+                                    className="w-7 h-7 text-gray-400 group-hover:text-white transition-all duration-300 group-hover:rotate-12"
                                     fill="currentColor"
                                     viewBox="0 0 24 24"
                                 >
@@ -90,11 +90,11 @@ export default function About() {
                                 href="https://www.linkedin.com/in/miguel-gonz%C3%A1lez-pascual-9a62b6292/"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group relative p-4 bg-linear-to-r from-[#0D0716]/80 to-[#1D0D26]/80 rounded-xl border border-gray-700 hover:border-[#148bdb] transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-[#148bdb]/50"
+                                className="group relative p-4 bg-linear-to-r from-[#0D0716]/80 to-[#1D0D26]/80 rounded-xl border border-gray-700 hover:border-[#148bdb] transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-[#148bdb]/50 hover:-translate-y-1 hover:rotate-3"
                                 aria-label="LinkedIn"
                             >
                                 <svg
-                                    className="w-7 h-7 text-gray-400 group-hover:text-white transition-colors"
+                                    className="w-7 h-7 text-gray-400 group-hover:text-white transition-all duration-300 group-hover:rotate-12"
                                     fill="currentColor"
                                     viewBox="0 0 24 24"
                                 >

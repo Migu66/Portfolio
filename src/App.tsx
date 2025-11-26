@@ -7,6 +7,7 @@ import About from './components/about/About'
 import Experience from './components/experience/Experience'
 import Skills from './components/skills/Skills'
 import Projects from './components/projects/Projects'
+import PageLoader from './components/general/PageLoader'
 
 function App() {
     const items = [
@@ -60,47 +61,50 @@ function App() {
         }
     ]
     return (
-        <div className="overflow-x-hidden">
-            <div
-                style={{
-                    width: '100vw',
-                    height: '100vh',
-                    position: 'fixed',
-                    top: 0,
-                    left: 0,
-                    backgroundColor: '#000',
-                    overflow: 'hidden'
-                }}
-            >
-                <FloatingLines
-                    enabledWaves={['top', 'middle', 'bottom']}
-                    lineCount={[10, 10, 10]}
-                    lineDistance={[8, 6, 4]}
-                    bendRadius={5.0}
-                    bendStrength={-0.5}
-                    interactive={false}
-                    parallax={true}
+        <>
+            <PageLoader />
+            <div className="overflow-x-hidden">
+                <div
+                    style={{
+                        width: '100vw',
+                        height: '100vh',
+                        position: 'fixed',
+                        top: 0,
+                        left: 0,
+                        backgroundColor: '#000',
+                        overflow: 'hidden'
+                    }}
+                >
+                    <FloatingLines
+                        enabledWaves={['top', 'middle', 'bottom']}
+                        lineCount={[10, 10, 10]}
+                        lineDistance={[8, 6, 4]}
+                        bendRadius={5.0}
+                        bendStrength={-0.5}
+                        interactive={false}
+                        parallax={true}
+                    />
+                </div>
+                <CardNav
+                    logo={logo}
+                    logoAlt="Company Logo"
+                    items={items}
+                    baseColor="#fff"
+                    menuColor="#000"
+                    ease="power3.out"
                 />
+
+                <Home />
+
+                <About />
+
+                <Experience />
+
+                <Skills />
+
+                <Projects />
             </div>
-            <CardNav
-                logo={logo}
-                logoAlt="Company Logo"
-                items={items}
-                baseColor="#fff"
-                menuColor="#000"
-                ease="power3.out"
-            />
-
-            <Home />
-
-			<About />
-
-			<Experience />
-
-			<Skills />
-			
-			<Projects />
-        </div>
+        </>
     )
 }
 

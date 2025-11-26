@@ -1,3 +1,8 @@
+import {
+    useFadeInUp,
+    useStaggerAnimation
+} from '../../hooks/useScrollAnimation'
+
 interface ExperienceItem {
     period: string
     role: string
@@ -23,6 +28,9 @@ const experiences: ExperienceItem[] = [
 ]
 
 export default function Experience() {
+    const titleRef = useFadeInUp(1)
+    const experiencesRef = useStaggerAnimation('.experience-item', 0.2)
+
     return (
         <section
             id="experience"
@@ -30,7 +38,7 @@ export default function Experience() {
         >
             <div className="px-6 md:px-12 lg:px-9 py-16 w-full">
                 {/* Título con efecto brillante */}
-                <div className="mb-16 lg:pl-25">
+                <div ref={titleRef} className="mb-16 lg:pl-25">
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-linear-to-r from-[#148bdb] to-[#B57EDC] tracking-wider pb-2">
                         Experiencia Laboral
                     </h2>
@@ -45,9 +53,12 @@ export default function Experience() {
                     <div className="absolute -left-1.5 md:left-[26px] bottom-0 w-0 h-0 border-l-[7px] border-l-transparent border-r-[7px] border-r-transparent border-t-12 border-t-pink-500"></div>
 
                     {/* Items de experiencia */}
-                    <div className="space-y-12">
+                    <div ref={experiencesRef} className="space-y-12">
                         {experiences.map((exp, index) => (
-                            <div key={index} className="relative pl-8 md:pl-20">
+                            <div
+                                key={index}
+                                className="experience-item relative pl-8 md:pl-20"
+                            >
                                 {/* Punto en la línea */}
                                 <div className="absolute -left-2 md:left-6 top-2 w-4 h-4 bg-blue-500 rounded-full border-4 border-white shadow-lg"></div>
 

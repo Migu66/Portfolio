@@ -1,12 +1,16 @@
 import LogoLoop from './LogoLoop'
 import SkillsGrid from './SkillsGrid'
 import { techLogos } from '../../lib/TechLogos'
+import { useFadeInUp, useScaleIn } from '../../hooks/useScrollAnimation'
 
 export default function Skills() {
+    const titleRef = useFadeInUp(1)
+    const logoLoopRef = useScaleIn(1)
+
     return (
         <section id="skills" className="relative py-16">
             <div className="px-6 md:px-12 lg:px-9 py-16 w-full">
-                <div className="mb-16 lg:pl-25">
+                <div ref={titleRef} className="mb-16 lg:pl-25">
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-linear-to-r from-[#148bdb] to-[#B57EDC] tracking-wider pb-2 lg:px-18">
                         Tecnologias y Herramientas
                     </h2>
@@ -14,6 +18,7 @@ export default function Skills() {
                 </div>
             </div>
             <div
+                ref={logoLoopRef}
                 className="w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw]"
                 style={{ height: '120px', overflow: 'hidden' }}
             >

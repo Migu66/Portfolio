@@ -1,6 +1,13 @@
 import ProfileCard3D from './ProfileCard3D'
+import {
+    useFadeInUp,
+    useStaggerAnimation
+} from '../../hooks/useScrollAnimation'
 
 export default function About() {
+    const titleRef = useFadeInUp(1)
+    const cardsRef = useStaggerAnimation('.about-card', 0.15)
+
     return (
         <section
             id="about"
@@ -8,7 +15,7 @@ export default function About() {
         >
             <div className="px-6 md:px-12 lg:px-24 py-16 w-full">
                 {/* Título con efecto brillante */}
-                <div className="mb-16 lg:pl-25">
+                <div ref={titleRef} className="mb-16 lg:pl-25">
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-linear-to-r from-[#148bdb] to-[#B57EDC] tracking-wider">
                         Sobre Mi
                     </h2>
@@ -18,8 +25,8 @@ export default function About() {
                 {/* Contenido en dos columnas */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center lg:pl-35">
                     {/* Columna izquierda - Texto */}
-                    <div className="space-y-8">
-                        <div className="bg-linear-to-r from-[#0D0716]/50 to-[#1D0D26]/30 backdrop-blur-sm p-8 rounded-2xl border border-[#148bdb]/20 hover:border-[#148bdb]/40 transition-all duration-300 shadow-lg hover:shadow-[#148bdb]/20">
+                    <div ref={cardsRef} className="space-y-8">
+                        <div className="about-card bg-linear-to-r from-[#0D0716]/50 to-[#1D0D26]/30 backdrop-blur-sm p-8 rounded-2xl border border-[#148bdb]/20 hover:border-[#148bdb]/40 transition-all duration-300 shadow-lg hover:shadow-[#148bdb]/20">
                             <p className="text-gray-200 text-lg md:text-xl leading-relaxed">
                                 Soy{' '}
                                 <span className="text-[#148bdb] font-semibold">
@@ -35,7 +42,7 @@ export default function About() {
                             </p>
                         </div>
 
-                        <div className="bg-linear-to-r from-[#150D1E]/50 to-[#0D0716]/30 backdrop-blur-sm p-8 rounded-2xl border border-[#B57EDC]/20 hover:border-[#B57EDC]/40 transition-all duration-300 shadow-lg hover:shadow-[#B57EDC]/20">
+                        <div className="about-card bg-linear-to-r from-[#150D1E]/50 to-[#0D0716]/30 backdrop-blur-sm p-8 rounded-2xl border border-[#B57EDC]/20 hover:border-[#B57EDC]/40 transition-all duration-300 shadow-lg hover:shadow-[#B57EDC]/20">
                             <p className="text-gray-200 text-lg md:text-xl leading-relaxed">
                                 Mi stack tecnológico incluye{' '}
                                 <span className="text-[#B57EDC] font-semibold">
@@ -50,7 +57,7 @@ export default function About() {
                             </p>
                         </div>
 
-                        <div className="bg-linear-to-r from-[#1D0D26]/50 to-[#150D1E]/30 backdrop-blur-sm p-8 rounded-2xl border border-[#148bdb]/20 hover:border-[#148bdb]/40 transition-all duration-300 shadow-lg hover:shadow-[#148bdb]/20">
+                        <div className="about-card bg-linear-to-r from-[#1D0D26]/50 to-[#150D1E]/30 backdrop-blur-sm p-8 rounded-2xl border border-[#148bdb]/20 hover:border-[#148bdb]/40 transition-all duration-300 shadow-lg hover:shadow-[#148bdb]/20">
                             <p className="text-gray-200 text-lg md:text-xl leading-relaxed">
                                 Busco constantemente expandir mis conocimientos
                                 y mantenerme actualizado con las últimas

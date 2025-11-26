@@ -1,13 +1,78 @@
+import { useEffect, useRef } from 'react'
+import gsap from 'gsap'
 import chicoEscritorio from '../../assets/chico-escritorio.png'
 
 const Home = () => {
+    const textRef = useRef<HTMLDivElement>(null)
+    const imageRef = useRef<HTMLDivElement>(null)
+    const scrollIndicatorRef = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+        const ctx = gsap.context(() => {
+            const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
+
+            // Animación del texto
+            tl.fromTo(
+                textRef.current?.children || [],
+                {
+                    opacity: 0,
+                    y: 50
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    stagger: 0.2
+                }
+            )
+
+            // Animación de la imagen
+            tl.fromTo(
+                imageRef.current,
+                {
+                    opacity: 0,
+                    x: 100,
+                    scale: 0.9
+                },
+                {
+                    opacity: 1,
+                    x: 0,
+                    scale: 1,
+                    duration: 1.2,
+                    ease: 'back.out(1.2)'
+                },
+                '-=0.8'
+            )
+
+            // Animación del indicador de scroll
+            tl.fromTo(
+                scrollIndicatorRef.current,
+                {
+                    opacity: 0,
+                    y: -20
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8
+                },
+                '-=0.5'
+            )
+        })
+
+        return () => ctx.revert()
+    }, [])
+
     return (
         <section
             id="home"
             className="relative w-screen min-h-screen flex flex-col md:flex-row items-center justify-between px-[5%] md:px-[10%] z-1 box-border md:text-left text-center overflow-x-hidden"
         >
             {/* Contenido de texto */}
-            <div className="flex-1 max-w-[600px] text-white mt-40 lg:mt-0">
+            <div
+                ref={textRef}
+                className="flex-1 max-w-[600px] text-white mt-40 lg:mt-0"
+            >
                 <h1 className="text-2xl md:text-3xl lg:text-4xl font-normal mb-4 text-white">
                     ¡Hola! <span className="inline-block animate-wave">👋</span>
                 </h1>
@@ -29,7 +94,10 @@ const Home = () => {
             </div>
 
             {/* Imagen */}
-            <div className="flex-1 flex justify-center md:justify-end items-center max-w-[1200px] md:pr-8 lg:pr-16 mb-20 lg:mb-0">
+            <div
+                ref={imageRef}
+                className="flex-1 flex justify-center md:justify-end items-center max-w-[1200px] md:pr-8 lg:pr-16 mb-20 lg:mb-0"
+            >
                 <img
                     src={chicoEscritorio}
                     alt="Desarrollador trabajando"
@@ -38,7 +106,10 @@ const Home = () => {
             </div>
 
             {/* Indicador de scroll */}
-            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-3">
+            <div
+                ref={scrollIndicatorRef}
+                className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-3"
+            >
                 <p className="text-gray-400 text-sm tracking-wider">
                     Desliza para explorar
                 </p>

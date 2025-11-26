@@ -1,8 +1,15 @@
 import { Github, ExternalLink } from 'lucide-react'
 import InterCodeViewImg from '../../assets/InterCodeView.png'
 import TikitImg from '../../assets/Tikit.png'
+import {
+    useFadeInUp,
+    useStaggerAnimation
+} from '../../hooks/useScrollAnimation'
 
 export default function Projects() {
+    const titleRef = useFadeInUp(0)
+    const projectsRef = useStaggerAnimation('.project-card', 0.15)
+
     const projects = [
         {
             title: 'InterCodeView',
@@ -35,23 +42,23 @@ export default function Projects() {
     ]
 
     return (
-        <section
-            id="projects"
-            className="relative py-16 px-4 md:px-8 lg:px-16"
-        >
+        <section id="projects" className="relative py-16 px-4 md:px-8 lg:px-16">
             <div className="px-6 md:px-12 lg:px-9 py-16 w-full">
-                <div className="mb-16 lg:pl-25">
+                <div ref={titleRef} className="mb-16 lg:pl-25">
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-linear-to-r from-[#148bdb] to-[#B57EDC] tracking-wider pb-2">
                         Mis proyectos
                     </h2>
                     <div className="h-1 w-24 bg-linear-to-r from-[#148bdb] to-[#B57EDC] mt-4 rounded-full"></div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-35">
+                <div
+                    ref={projectsRef}
+                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-35"
+                >
                     {projects.map((project, index) => (
                         <div
                             key={index}
-                            className={`group relative bg-linear-to-br from-gray-800 to-gray-900 rounded-2xl overflow-hidden border border-gray-700 hover:border-blue-500 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20 ${
+                            className={`project-card group relative bg-linear-to-br from-gray-800 to-gray-900 rounded-2xl overflow-hidden border border-gray-700 hover:border-blue-500 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20 ${
                                 project.comingSoon ? 'opacity-75' : ''
                             }`}
                         >

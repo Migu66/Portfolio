@@ -27,6 +27,7 @@ import cloudinaryLogo from '../../assets/logos/cloudinary.png'
 import openiaLogo from '../../assets/logos/openia.png'
 import zustandLogo from '../../assets/logos/zustand.png'
 import zodLogo from '../../assets/logos/zod.png'
+import { useStaggerAnimation } from '../../hooks/useScrollAnimation'
 
 const skillCategories = [
     {
@@ -87,15 +88,20 @@ const skillCategories = [
 ]
 
 export default function SkillsGrid() {
+    const categoriesRef = useStaggerAnimation('.skill-category', 0.15)
+
     return (
         <div className="container mx-auto px-6 md:px-12 lg:px-24 mt-20">
             {/* Contenedor principal con fondo difuminado */}
             <div className="bg-linear-to-br from-gray-900/40 via-gray-800/30 to-gray-900/40 backdrop-blur-lg rounded-3xl p-8 md:p-12 border border-gray-700/40 shadow-2xl">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div
+                    ref={categoriesRef}
+                    className="grid grid-cols-1 md:grid-cols-2 gap-8"
+                >
                     {skillCategories.map((category, index) => (
                         <div
                             key={index}
-                            className="bg-linear-to-br from-gray-900/50 to-gray-800/30 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 hover:border-gray-600/50 transition-all duration-300"
+                            className="skill-category bg-linear-to-br from-gray-900/50 to-gray-800/30 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 hover:border-gray-600/50 transition-all duration-300"
                         >
                             <div className="flex items-center gap-3 mb-6">
                                 <div

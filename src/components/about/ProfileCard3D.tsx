@@ -1,4 +1,8 @@
-import { useState, useRef, type MouseEvent } from 'react'
+import { useState, useRef, type MouseEvent, useEffect } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger)
 
 interface ProfileCard3DProps {
     imageSrc?: string
@@ -14,6 +18,37 @@ export default function ProfileCard3D({
     const [rotation, setRotation] = useState({ x: 0, y: 0 })
     const [isHovering, setIsHovering] = useState(false)
     const cardRef = useRef<HTMLDivElement>(null)
+    const containerRef = useRef<HTMLDivElement>(null)
+
+    // Animación de entrada con scroll
+    useEffect(() => {
+        if (!containerRef.current) return
+
+        const ctx = gsap.context(() => {
+            gsap.fromTo(
+                containerRef.current,
+                {
+                    opacity: 0,
+                    scale: 0.8,
+                    y: 50
+                },
+                {
+                    opacity: 1,
+                    scale: 1,
+                    y: 0,
+                    duration: 1,
+                    ease: 'back.out(1.4)',
+                    scrollTrigger: {
+                        trigger: containerRef.current,
+                        start: 'top 85%',
+                        once: true
+                    }
+                }
+            )
+        }, containerRef)
+
+        return () => ctx.revert()
+    }, [])
 
     const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
         if (!cardRef.current) return
@@ -42,7 +77,10 @@ export default function ProfileCard3D({
     }
 
     return (
-        <div className="flex items-center justify-center perspective-1000">
+        <div
+            ref={containerRef}
+            className="flex items-center justify-center perspective-1000"
+        >
             <div
                 ref={cardRef}
                 onMouseMove={handleMouseMove}

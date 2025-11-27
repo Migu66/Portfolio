@@ -8,6 +8,7 @@ import Experience from './components/experience/Experience'
 import Skills from './components/skills/Skills'
 import Projects from './components/projects/Projects'
 import PageLoader from './components/general/PageLoader'
+import Footer from './components/general/Footer'
 
 function App() {
     const items = [
@@ -103,6 +104,8 @@ function App() {
                 <Skills />
 
                 <Projects />
+
+                <Footer />
             </div>
         </>
     )

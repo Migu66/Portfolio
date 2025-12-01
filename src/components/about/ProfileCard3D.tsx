@@ -1,6 +1,7 @@
 import { useState, useRef, type MouseEvent, useEffect } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import foto from '../../assets/Mi-foto.png'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -11,7 +12,7 @@ interface ProfileCard3DProps {
 }
 
 export default function ProfileCard3D({
-    imageSrc = 'https://reactbits.dev/assets/demo/person.webp',
+    imageSrc = foto,
     name = 'Miguel González Pascual',
     title = 'Desarrollador Fullstack'
 }: ProfileCard3DProps) {
@@ -135,7 +136,7 @@ export default function ProfileCard3D({
                             alt="Foto de perfil"
                             className="w-full h-full object-cover object-top"
                             style={{
-                                filter: 'brightness(0.85) contrast(1.15) saturate(0.7) sepia(0.15) hue-rotate(220deg)'
+                                filter: 'brightness(0.92) contrast(1.08) saturate(0.5) sepia(0.5) hue-rotate(220deg)'
                             }}
                         />
                     </div>

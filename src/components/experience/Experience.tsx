@@ -1,85 +1,165 @@
-import {
-    useFadeInUp,
-    useStaggerAnimation
-} from '../../hooks/useScrollAnimation'
+import { useLayoutEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
-interface ExperienceItem {
+gsap.registerPlugin(ScrollTrigger)
+
+interface Entry {
+    index: string
     period: string
-    role: string
     company: string
+    role: string
     description: string
+    open?: boolean
 }
 
-const experiences: ExperienceItem[] = [
+const ENTRIES: Entry[] = [
     {
-        period: 'sept 2024 - dic 2024',
-        role: 'Prácticas ICP',
-        company: 'ICP',
+        index: '01',
+        period: 'Sept — Dic 2024',
+        company: 'ICP · Meco',
+        role: 'Prácticas · Desarrollo',
         description:
-            'Durante las prácticas, diseñé y desarrollé una aplicación en C# con base de datos SQL para representar el flujo y gestión de una operativa logística, incluyendo el control de entradas, salidas y el estado de los pedidos.'
+            'Diseño y desarrollo integral de una aplicación de escritorio en .NET con arquitectura multicapa para la gestión logística: inventario, entradas, salidas y trazabilidad de pedidos en tiempo real, con modelado de datos y procedimientos almacenados en SQL Server.'
     },
     {
-        period: 'ene 2025 - may 2025',
-        role: 'Soporte IT nivel 2',
-        company: 'ICP',
+        index: '02',
+        period: 'Ene — Jun 2025',
+        company: 'ICP · Meco',
+        role: 'Soporte IT Nivel 2 · Desarrollo',
         description:
-            'Experiencia como Soporte IT de nivel 2, resolviendo incidencias técnicas y realizando mejoras funcionales en aplicaciones logísticas internas. Uso de Visual Basic, C# y SQL Server para adaptar y actualizar el software según las necesidades del equipo operativo.'
+            'Resolución de incidencias técnicas críticas y mejoras funcionales en las aplicaciones logísticas internas: mantenimiento de software empresarial con Visual Basic, .NET y consultas avanzadas en T-SQL sobre SQL Server.'
+    },
+    {
+        index: '03',
+        period: 'Ahora',
+        company: '¿Tu equipo?',
+        role: 'Siguiente capítulo',
+        description:
+            'Buscando el reto que deje obsoleto este portfolio. Si tienes uno entre manos, hablemos.',
+        open: true
     }
 ]
 
+/**
+ * Trayectoria: libro de registro sobre tinta. Filas que se revelan al
+ * hacer scroll y se inundan de naranja al pasar el cursor; detrás, la
+ * palabra TRAYECTORIA vaciada deriva en horizontal.
+ */
 export default function Experience() {
-    const titleRef = useFadeInUp(1)
-    const experiencesRef = useStaggerAnimation('.experience-item', 0.2)
+    const rootRef = useRef<HTMLElement>(null)
+
+    useLayoutEffect(() => {
+        const root = rootRef.current
+        if (!root) return
+
+        const ctx = gsap.context(() => {
+            const mm = gsap.matchMedia()
+
+            mm.add('(prefers-reduced-motion: no-preference)', () => {
+                gsap.to('.exp-bgword', {
+                    xPercent: -22,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: root,
+                        start: 'top bottom',
+                        end: 'bottom top',
+                        scrub: true
+                    }
+                })
+
+                gsap.utils
+                    .toArray<HTMLElement>('.exp-row')
+                    .forEach((row, i) => {
+                        gsap.from(row, {
+                            y: 70,
+                            opacity: 0,
+                            duration: 0.9,
+                            delay: i * 0.06,
+                            ease: 'power3.out',
+                            scrollTrigger: {
+                                trigger: row,
+                                start: 'top 88%',
+                                once: true
+                            }
+                        })
+                    })
+            })
+        }, root)
+
+        return () => ctx.revert()
+    }, [])
 
     return (
         <section
-            id="experience"
-            className="relative py-16 px-4 md:px-8 lg:px-16"
+            ref={rootRef}
+            id="trayectoria"
+            className="bg-ink text-paper relative overflow-hidden py-28 md:py-40"
         >
-            <div className="px-6 md:px-12 lg:px-9 py-16 w-full">
-                {/* Título con efecto brillante */}
-                <div ref={titleRef} className="mb-16 lg:pl-25">
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-linear-to-r from-[#148bdb] to-[#B57EDC] tracking-wider pb-2">
-                        Experiencia Laboral
-                    </h2>
-                    <div className="h-1 w-24 bg-linear-to-r from-[#148bdb] to-[#B57EDC] mt-4 rounded-full"></div>
+            {/* palabra de fondo, vaciada, en deriva horizontal */}
+            <div
+                aria-hidden="true"
+                className="exp-bgword text-outline-paper font-display pointer-events-none absolute top-6 left-0 text-[clamp(5rem,18vw,17rem)] leading-none font-semibold whitespace-nowrap opacity-25"
+            >
+                TRAYECTORIA — TRAYECTORIA — TRAYECTORIA
+            </div>
+
+            <div className="relative px-5 md:px-10">
+                <div className="mt-24 mb-14 flex items-center gap-5 md:mt-36 md:mb-20">
+                    <span className="meta opacity-70">(02)</span>
+                    <span className="expanded text-sm font-semibold">
+                        Trayectoria
+                    </span>
+                    <span className="bg-paper/25 h-px flex-1" />
+                    <span className="meta hidden opacity-50 md:inline">
+                        Aprendida en producción
+                    </span>
                 </div>
 
-                <div className="relative max-w-4xl mx-auto pb-12">
-                    {/* Línea vertical con flecha */}
-                    <div className="absolute left-0 md:left-8 top-3 h-[calc(92%+3rem)] md:h-[calc(88%+3rem)] w-0.5 bg-linear-to-b from-blue-500 via-purple-500 to-pink-500"></div>
-
-                    {/* Punta de flecha */}
-                    <div className="absolute -left-1.5 md:left-[26px] bottom-0 w-0 h-0 border-l-[7px] border-l-transparent border-r-[7px] border-r-transparent border-t-12 border-t-pink-500"></div>
-
-                    {/* Items de experiencia */}
-                    <div ref={experiencesRef} className="space-y-12">
-                        {experiences.map((exp, index) => (
+                <div className="border-paper/20 border-t">
+                    {ENTRIES.map((entry) => (
+                        <article
+                            key={entry.index}
+                            className="exp-row group border-paper/20 relative overflow-hidden border-b"
+                        >
+                            {/* marea naranja al hover */}
                             <div
-                                key={index}
-                                className="experience-item relative pl-8 md:pl-20"
-                            >
-                                {/* Punto en la línea */}
-                                <div className="absolute -left-2 md:left-6 top-2 w-4 h-4 bg-blue-500 rounded-full border-4 border-white shadow-lg animate-pulse-glow"></div>
+                                aria-hidden="true"
+                                className="bg-accent absolute inset-0 translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0"
+                            />
 
-                                {/* Contenido */}
-                                <div className="bg-black/40 backdrop-blur-md rounded-lg p-6 border border-white/20 hover:border-[#148bdb]/70 transition-all duration-500 hover:shadow-lg hover:shadow-[#148bdb]/40 hover:scale-105 hover:-translate-y-2 hover:rotate-1">
-                                    <div className="text-sm text-[#148bdb] font-semibold mb-2">
-                                        {exp.period}
-                                    </div>
-                                    <h3 className="text-xl md:text-2xl font-bold mb-1 text-white">
-                                        {exp.role}
-                                    </h3>
-                                    <div className="text-gray-300 mb-4">
-                                        {exp.company}
-                                    </div>
-                                    <p className="text-gray-100 leading-relaxed">
-                                        {exp.description}
+                            <div className="group-hover:text-ink relative z-10 grid grid-cols-1 gap-x-8 gap-y-3 px-2 py-10 transition-colors duration-300 md:grid-cols-12 md:items-baseline md:py-12">
+                                <span className="font-mono text-sm opacity-60 md:col-span-1">
+                                    ({entry.index})
+                                </span>
+
+                                <div className="md:col-span-3">
+                                    <p className="meta">{entry.period}</p>
+                                    <p className="meta mt-1 opacity-60">
+                                        {entry.company}
+                                    </p>
+                                </div>
+
+                                <div className="md:col-span-8">
+                                    {entry.open ? (
+                                        <a
+                                            href="#contacto"
+                                            className="font-display text-accent group-hover:text-ink inline-block text-[clamp(1.7rem,3.6vw,3.2rem)] leading-tight font-semibold tracking-tight italic transition-colors duration-300"
+                                        >
+                                            {entry.role} ↗
+                                        </a>
+                                    ) : (
+                                        <h3 className="font-display text-[clamp(1.7rem,3.6vw,3.2rem)] leading-tight font-semibold tracking-tight">
+                                            {entry.role}
+                                        </h3>
+                                    )}
+                                    <p className="group-hover:text-ink/80 mt-3 max-w-[52ch] leading-relaxed opacity-70 transition-colors duration-300">
+                                        {entry.description}
                                     </p>
                                 </div>
                             </div>
-                        ))}
-                    </div>
+                        </article>
+                    ))}
                 </div>
             </div>
         </section>

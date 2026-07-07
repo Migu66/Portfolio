@@ -1,114 +1,164 @@
-import ProfileCard3D from './ProfileCard3D'
-import {
-    useFadeInUp,
-    useStaggerAnimation
-} from '../../hooks/useScrollAnimation'
+import { useLayoutEffect, useRef } from 'react'
+import gsap from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { SplitText } from 'gsap/SplitText'
 
+gsap.registerPlugin(ScrollTrigger, SplitText)
+
+const FACTS = [
+    { label: 'Rol', value: 'Desarrollador Full-Stack' },
+    { label: 'Stack', value: 'C# · .NET · SQL Server · React' },
+    { label: 'Base', value: 'Madrid / Guadalajara' },
+    { label: 'Formación', value: 'G.S. DAM · Inglés B2' },
+    { label: 'Estado', value: 'Disponible', accent: true }
+]
+
+/**
+ * Perfil: spread editorial. Statement enorme en serif a la izquierda,
+ * columna estrecha con ficha técnica y párrafos a la derecha.
+ */
 export default function About() {
-    const titleRef = useFadeInUp(1)
-    const cardsRef = useStaggerAnimation('.about-card', 0.15)
+    const rootRef = useRef<HTMLElement>(null)
+
+    useLayoutEffect(() => {
+        const root = rootRef.current
+        if (!root) return
+
+        const ctx = gsap.context(() => {
+            const mm = gsap.matchMedia()
+
+            mm.add('(prefers-reduced-motion: no-preference)', () => {
+                // statement palabra a palabra, enmascarado por líneas
+                const split = SplitText.create('.about-statement', {
+                    type: 'lines,words',
+                    mask: 'lines'
+                })
+
+                gsap.from(split.words, {
+                    yPercent: 110,
+                    duration: 0.9,
+                    stagger: 0.025,
+                    ease: 'expo.out',
+                    scrollTrigger: {
+                        trigger: '.about-statement',
+                        start: 'top 78%',
+                        once: true
+                    }
+                })
+
+                gsap.from('.about-col > *', {
+                    y: 40,
+                    opacity: 0,
+                    duration: 0.8,
+                    stagger: 0.12,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: '.about-col',
+                        start: 'top 80%',
+                        once: true
+                    }
+                })
+
+                return () => split.revert()
+            })
+        }, root)
+
+        return () => ctx.revert()
+    }, [])
 
     return (
         <section
-            id="about"
-            className="relative min-h-screen w-full flex items-center justify-center"
+            ref={rootRef}
+            id="perfil"
+            className="relative px-5 py-28 md:px-10 md:py-40"
         >
-            <div className="px-6 md:px-12 lg:px-24 py-16 w-full">
-                {/* Título con efecto brillante */}
-                <div ref={titleRef} className="mb-16 lg:pl-25">
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-transparent bg-clip-text bg-linear-to-r from-[#148bdb] to-[#B57EDC] tracking-wider">
-                        Sobre Mi
-                    </h2>
-                    <div className="h-1 w-24 bg-linear-to-r from-[#148bdb] to-[#B57EDC] mt-4 rounded-full"></div>
-                </div>
+            {/* cabecera de sección */}
+            <div className="mb-16 flex items-center gap-5 md:mb-24">
+                <span className="meta">(01)</span>
+                <span className="expanded text-sm font-semibold">Perfil</span>
+                <span className="bg-ink/20 h-px flex-1" />
+                <svg
+                    aria-hidden="true"
+                    viewBox="0 0 100 100"
+                    className="spin-slow text-accent h-5 w-5"
+                    fill="currentColor"
+                >
+                    <path d="M50 0 L58 38 L96 28 L64 50 L96 72 L58 62 L50 100 L42 62 L4 72 L36 50 L4 28 L42 38 Z" />
+                </svg>
+            </div>
 
-                {/* Contenido en dos columnas */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center lg:pl-35">
-                    {/* Columna izquierda - Texto */}
-                    <div ref={cardsRef} className="space-y-8">
-                        <div className="about-card bg-linear-to-r from-[#0D0716]/50 to-[#1D0D26]/30 backdrop-blur-sm p-8 rounded-2xl border border-[#148bdb]/20 hover:border-[#148bdb]/40 transition-all duration-500 shadow-lg hover:shadow-[#148bdb]/30 hover:scale-105 hover:-translate-y-2">
-                            <p className="text-gray-200 text-lg md:text-xl leading-relaxed">
-                                Soy{' '}
-                                <span className="text-[#148bdb] font-semibold">
-                                    Miguel González Pascual
-                                </span>
-                                , Desarrollador Full Stack especializado en la
-                                creación de aplicaciones web modernas y
-                                escalables. Con sólida experiencia en el
-                                ecosistema JavaScript/TypeScript, combino
-                                habilidades técnicas con una mentalidad
-                                orientada a resultados para entregar soluciones
-                                de alto impacto.
-                            </p>
-                        </div>
+            <div className="grid grid-cols-1 gap-16 lg:grid-cols-12">
+                {/* statement */}
+                <h2 className="about-statement font-display col-span-1 text-[clamp(2rem,4.6vw,4.4rem)] leading-[1.05] font-medium tracking-tight lg:col-span-7">
+                    Del modelo de datos al{' '}
+                    <em className="text-accent font-light italic">
+                        último píxel
+                    </em>
+                    : me interesa el producto entero, no solo mi mitad del
+                    stack.
+                </h2>
 
-                        <div className="about-card bg-linear-to-r from-[#150D1E]/50 to-[#0D0716]/30 backdrop-blur-sm p-8 rounded-2xl border border-[#B57EDC]/20 hover:border-[#B57EDC]/40 transition-all duration-500 shadow-lg hover:shadow-[#B57EDC]/30 hover:scale-105 hover:-translate-y-2">
-                            <p className="text-gray-200 text-lg md:text-xl leading-relaxed">
-                                Mi stack tecnológico incluye{' '}
-                                <span className="text-[#B57EDC] font-semibold">
-                                    React, Next.js, TypeScript, Node.js, C# y
-                                    bases de datos SQL/NoSQL
-                                </span>
-                                . Me destaco por escribir código limpio,
-                                mantenible y siguiendo las mejores prácticas de
-                                la industria. Poseo capacidad demostrada para
-                                trabajar tanto de forma autónoma como en equipos
-                                colaborativos.
-                            </p>
-                        </div>
-
-                        <div className="about-card bg-linear-to-r from-[#1D0D26]/50 to-[#150D1E]/30 backdrop-blur-sm p-8 rounded-2xl border border-[#148bdb]/20 hover:border-[#148bdb]/40 transition-all duration-500 shadow-lg hover:shadow-[#148bdb]/30 hover:scale-105 hover:-translate-y-2">
-                            <p className="text-gray-200 text-lg md:text-xl leading-relaxed">
-                                Busco constantemente expandir mis conocimientos
-                                y mantenerme actualizado con las últimas
-                                tendencias en desarrollo web. Mi objetivo es
-                                contribuir a proyectos desafiantes donde pueda
-                                aplicar mi experiencia técnica y seguir
-                                creciendo profesionalmente en un entorno
-                                dinámico e innovador.
-                            </p>
-                        </div>
-
-                        {/* Iconos sociales mejorados */}
-                        <div className="flex gap-6 pt-6">
-                            <a
-                                href="https://github.com/Migu66"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="group relative p-4 bg-linear-to-r from-[#0D0716]/80 to-[#1D0D26]/80 rounded-xl border border-gray-700 hover:border-[#148bdb] transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-[#148bdb]/50 hover:-translate-y-1 hover:rotate-3"
-                                aria-label="GitHub"
+                {/* columna estrecha: ficha + párrafos + enlaces */}
+                <div className="about-col col-span-1 flex flex-col gap-10 lg:col-span-4 lg:col-start-9">
+                    <dl>
+                        {FACTS.map((fact) => (
+                            <div
+                                key={fact.label}
+                                className="border-ink/20 flex items-baseline justify-between gap-4 border-t py-3"
                             >
-                                <svg
-                                    className="w-7 h-7 text-gray-400 group-hover:text-white transition-all duration-300 group-hover:rotate-12"
-                                    fill="currentColor"
-                                    viewBox="0 0 24 24"
+                                <dt className="meta opacity-60">
+                                    {fact.label}
+                                </dt>
+                                <dd
+                                    className={`meta text-right ${
+                                        fact.accent
+                                            ? 'text-accent flex items-center gap-2'
+                                            : ''
+                                    }`}
                                 >
-                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                                </svg>
-                            </a>
-                            <a
-                                href="https://www.linkedin.com/in/miguel-gonz%C3%A1lez-pascual-9a62b6292/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="group relative p-4 bg-linear-to-r from-[#0D0716]/80 to-[#1D0D26]/80 rounded-xl border border-gray-700 hover:border-[#148bdb] transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-[#148bdb]/50 hover:-translate-y-1 hover:rotate-3"
-                                aria-label="LinkedIn"
-                            >
-                                <svg
-                                    className="w-7 h-7 text-gray-400 group-hover:text-white transition-all duration-300 group-hover:rotate-12"
-                                    fill="currentColor"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                                </svg>
-                            </a>
-                        </div>
-                    </div>
+                                    {fact.accent && (
+                                        <span className="blink-dot bg-accent inline-block h-1.5 w-1.5 rounded-full" />
+                                    )}
+                                    {fact.value}
+                                </dd>
+                            </div>
+                        ))}
+                    </dl>
 
-                    {/* Columna derecha - Card 3D */}
-                    <div className="relative">
-                        <div className="relative flex items-center justify-center min-h-[600px] pb-25">
-                            <ProfileCard3D />
-                        </div>
+                    <p className="text-base leading-relaxed">
+                        Soy Miguel González Pascual, desarrollador full-stack.
+                        Mi terreno principal es C# y .NET — arquitecturas
+                        limpias, API REST, SQL Server — y me muevo con la misma
+                        soltura en el ecosistema TypeScript: React y Next.js
+                        para interfaces que no dan vergüenza enseñar.
+                    </p>
+
+                    <p className="text-muted text-base leading-relaxed">
+                        Aprendí el oficio donde más se aprende: en producción.
+                        En ICP desarrollé una aplicación de escritorio en .NET
+                        con arquitectura multicapa para logística, y después la
+                        sostuve desde soporte de nivel 2. Resolver incidencias
+                        ajenas enseña a no crear las propias: escribo código
+                        pensado para el siguiente que lo lea.
+                    </p>
+
+                    <div className="flex gap-8">
+                        <a
+                            href="https://github.com/Migu66"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="u-link meta"
+                        >
+                            GitHub ↗
+                        </a>
+                        <a
+                            href="https://www.linkedin.com/in/miguel-gonz%C3%A1lez-pascual-9a62b6292/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="u-link meta"
+                        >
+                            LinkedIn ↗
+                        </a>
                     </div>
                 </div>
             </div>

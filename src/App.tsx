@@ -1,112 +1,33 @@
+import { useCallback, useState } from 'react'
 import './App.css'
-import FloatingLines from './components/general/FloatingLines'
-import logo from './assets/code.png'
-import CardNav from './components/general/CardNav'
-import Home from './components/home/Home'
+import Cursor from './components/general/Cursor'
+import Preloader from './components/general/Preloader'
+import Nav from './components/general/Nav'
+import Hero from './components/home/Hero'
 import About from './components/about/About'
 import Experience from './components/experience/Experience'
 import Skills from './components/skills/Skills'
 import Projects from './components/projects/Projects'
-import PageLoader from './components/general/PageLoader'
 import Footer from './components/general/Footer'
 
 function App() {
-    const items = [
-        {
-            label: 'Sobre Mi',
-            bgColor: '#0D0716',
-            textColor: '#fff',
-            links: [
-                {
-                    label: 'Sobre Mi',
-                    href: '#about',
-                    ariaLabel: 'Ir a la sección Sobre Mi'
-                }
-            ]
-        },
-        {
-            label: 'Experiencia',
-            bgColor: '#150D1E',
-            textColor: '#fff',
-            links: [
-                {
-                    label: 'Experiencia',
-                    href: '#experience',
-                    ariaLabel: 'Ir a la sección Experiencia'
-                }
-            ]
-        },
-        {
-            label: 'Tecnologías',
-            bgColor: '#1D0D26',
-            textColor: '#fff',
-            links: [
-                {
-                    label: 'Tecnologías',
-                    href: '#skills',
-                    ariaLabel: 'Ir a la sección Tecnologías'
-                }
-            ]
-        },
-        {
-            label: 'Proyectos',
-            bgColor: '#250D2E',
-            textColor: '#fff',
-            links: [
-                {
-                    label: 'Ver Proyectos',
-                    href: '#projects',
-                    ariaLabel: 'Ir a la sección Proyectos'
-                }
-            ]
-        }
-    ]
+    const [loaded, setLoaded] = useState(false)
+    const handleLoaderDone = useCallback(() => setLoaded(true), [])
+
     return (
         <>
-            <PageLoader />
-            <div className="overflow-x-hidden">
-                <div
-                    style={{
-                        width: '100vw',
-                        height: '100vh',
-                        position: 'fixed',
-                        top: 0,
-                        left: 0,
-                        backgroundColor: '#000',
-                        overflow: 'hidden'
-                    }}
-                >
-                    <FloatingLines
-                        enabledWaves={['top', 'middle', 'bottom']}
-                        lineCount={[10, 10, 10]}
-                        lineDistance={[8, 6, 4]}
-                        bendRadius={5.0}
-                        bendStrength={-0.5}
-                        interactive={false}
-                        parallax={true}
-                    />
-                </div>
-                <CardNav
-                    logo={logo}
-                    logoAlt="Company Logo"
-                    items={items}
-                    baseColor="#fff"
-                    menuColor="#000"
-                    ease="power3.out"
-                />
-
-                <Home />
-
+            <Cursor />
+            <Preloader onDone={handleLoaderDone} />
+            <div className="noise" aria-hidden="true" />
+            <Nav show={loaded} />
+            <main>
+                <Hero play={loaded} />
                 <About />
-
                 <Experience />
-
                 <Skills />
-
                 <Projects />
-
-                <Footer />
-            </div>
+            </main>
+            <Footer />
         </>
     )
 }

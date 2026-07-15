@@ -43,7 +43,7 @@ const ENTRIES: Entry[] = [
 
 /**
  * Trayectoria: libro de registro sobre tinta. Filas que se revelan al
- * hacer scroll y se inundan de naranja al pasar el cursor; detrás, la
+ * hacer scroll y se inundan de azul al pasar el cursor; detrás, la
  * palabra TRAYECTORIA vaciada deriva en horizontal.
  */
 export default function Experience() {
@@ -122,13 +122,13 @@ export default function Experience() {
                             key={entry.index}
                             className="exp-row group border-paper/20 relative overflow-hidden border-b"
                         >
-                            {/* marea naranja al hover */}
+                            {/* marea azul al hover */}
                             <div
                                 aria-hidden="true"
                                 className="bg-accent absolute inset-0 translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:translate-y-0"
                             />
 
-                            <div className="group-hover:text-ink relative z-10 grid grid-cols-1 gap-x-8 gap-y-3 px-2 py-10 transition-colors duration-300 md:grid-cols-12 md:items-baseline md:py-12">
+                            <div className="relative z-10 grid grid-cols-1 gap-x-8 gap-y-3 px-2 py-10 md:grid-cols-12 md:items-baseline md:py-12">
                                 <span className="font-mono text-sm opacity-60 md:col-span-1">
                                     ({entry.index})
                                 </span>
@@ -144,7 +144,7 @@ export default function Experience() {
                                     {entry.open ? (
                                         <a
                                             href="#contacto"
-                                            className="font-display text-accent group-hover:text-ink inline-block text-[clamp(1.7rem,3.6vw,3.2rem)] leading-tight font-semibold tracking-tight italic transition-colors duration-300"
+                                            className="font-display text-accent-light group-hover:text-paper inline-block text-[clamp(1.7rem,3.6vw,3.2rem)] leading-tight font-semibold tracking-tight italic transition-colors duration-300"
                                         >
                                             {entry.role} ↗
                                         </a>
@@ -153,7 +153,7 @@ export default function Experience() {
                                             {entry.role}
                                         </h3>
                                     )}
-                                    <p className="group-hover:text-ink/80 mt-3 max-w-[52ch] leading-relaxed opacity-70 transition-colors duration-300">
+                                    <p className="mt-3 max-w-[52ch] leading-relaxed opacity-70">
                                         {entry.description}
                                     </p>
                                 </div>

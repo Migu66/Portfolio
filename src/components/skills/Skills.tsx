@@ -79,7 +79,7 @@ const tierClass: Record<Tier, string> = {
 }
 
 /**
- * Arsenal: nada de iconitos ni barras de progreso — un muro
+ * Habilidades: nada de iconitos ni barras de progreso — un muro
  * tipográfico donde el tamaño de cada palabra es la jerarquía.
  */
 export default function Skills() {
@@ -132,7 +132,7 @@ export default function Skills() {
     return (
         <section
             ref={rootRef}
-            id="arsenal"
+            id="habilidades"
             className="relative overflow-hidden pt-28 md:pt-40"
         >
             <div className="px-5 md:px-10">
@@ -145,8 +145,8 @@ export default function Skills() {
                             Sin iconitos. Sin barras de progreso.
                         </span>
                     </div>
-                    <h2 className="skills-title font-display mt-6 text-right text-[clamp(3rem,10vw,9.5rem)] leading-none font-semibold tracking-tight">
-                        ARSENAL
+                    <h2 className="skills-title font-display mt-6 text-right text-[clamp(2.6rem,9.5vw,8.5rem)] leading-none font-semibold tracking-tight">
+                        HABILIDADES
                         <span className="text-accent">.</span>
                     </h2>
                 </div>
@@ -188,7 +188,7 @@ export default function Skills() {
                 </div>
             </div>
 
-            {/* cinta naranja a contracorriente */}
+            {/* cinta de acento a contracorriente */}
             <Marquee
                 reverse
                 duration={34}
@@ -202,7 +202,7 @@ export default function Skills() {
                         {text}
                     </span>
                 ))}
-                className="bg-accent text-ink border-ink mt-20 border-y py-3 text-[clamp(0.85rem,1.5vw,1.15rem)] font-medium"
+                className="bg-accent text-paper border-ink mt-20 border-y py-3 text-[clamp(0.85rem,1.5vw,1.15rem)] font-medium"
             />
         </section>
     )

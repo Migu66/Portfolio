@@ -9,15 +9,15 @@ interface NavProps {
 const LINKS = [
     { index: '01', label: 'Perfil', href: '#perfil' },
     { index: '02', label: 'Trayectoria', href: '#trayectoria' },
-    { index: '03', label: 'Arsenal', href: '#arsenal' },
+    { index: '03', label: 'Habilidades', href: '#habilidades' },
     { index: '04', label: 'Proyectos', href: '#proyectos' },
     { index: '05', label: 'Contacto', href: '#contacto' }
 ]
 
 /**
- * Barra fija en blend-difference: se invierte sola sobre cualquier
- * fondo (papel, tinta, naranja). En móvil, menú a pantalla completa
- * con enlaces gigantes en serif.
+ * Barra fija sobre papel sólido: el contenido pasa por debajo sin
+ * pisar los titulares. En móvil, menú a pantalla completa con
+ * enlaces gigantes en serif.
  */
 export default function Nav({ show }: NavProps) {
     const barRef = useRef<HTMLElement>(null)
@@ -83,10 +83,14 @@ export default function Nav({ show }: NavProps) {
         <>
             <header
                 ref={barRef}
-                className="fixed inset-x-0 top-0 z-80 mix-blend-difference"
+                className={`fixed inset-x-0 top-0 z-80 border-b transition-colors duration-500 ${
+                    open
+                        ? 'bg-ink text-paper border-transparent'
+                        : 'bg-paper text-ink border-ink/10'
+                }`}
                 style={{ opacity: show ? undefined : 0 }}
             >
-                <nav className="flex items-center justify-between px-5 py-4 text-white md:px-10">
+                <nav className="flex items-center justify-between px-5 py-4 md:px-10">
                     <a
                         href="#top"
                         className="meta font-bold"
@@ -109,7 +113,7 @@ export default function Nav({ show }: NavProps) {
                         <li>
                             <button
                                 onClick={downloadCV}
-                                className="meta border border-white px-3 py-1.5 transition-colors duration-300 hover:bg-white hover:text-black"
+                                className="meta border-ink hover:bg-ink hover:text-paper border px-3 py-1.5 transition-colors duration-300"
                             >
                                 CV ↓
                             </button>
@@ -138,9 +142,9 @@ export default function Nav({ show }: NavProps) {
                             <a
                                 href={link.href}
                                 onClick={() => setOpen(false)}
-                                className="menu-link font-display hover:text-accent block text-[clamp(2.4rem,10vw,4.5rem)] leading-[1.05] font-semibold transition-colors duration-300 will-change-transform"
+                                className="menu-link font-display hover:text-accent-light block text-[clamp(2.4rem,10vw,4.5rem)] leading-[1.05] font-semibold transition-colors duration-300 will-change-transform"
                             >
-                                <sup className="meta text-accent mr-3">
+                                <sup className="meta text-accent-light mr-3">
                                     {link.index}
                                 </sup>
                                 {link.label}

@@ -2,13 +2,15 @@
 
 /* ------------------------------------------------------------------ */
 /*  SISTEMA — tinta sobre papel                                        */
-/*  papel crudo · tinta caliente · naranja internacional               */
+/*  papel crudo · tinta caliente · azul cobalto                        */
 /* ------------------------------------------------------------------ */
 
 @theme {
     --color-paper: #f3efe6;
     --color-ink: #181511;
-    --color-accent: #ff4a00;
+    --color-accent: #0047ab;
+    /* variante clara del acento: para texto sobre fondos de tinta */
+    --color-accent-light: #9db9ff;
     --color-muted: #7a7266;
 
     --font-display: 'Fraunces Variable', Georgia, serif;

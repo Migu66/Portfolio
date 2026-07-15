@@ -116,7 +116,7 @@ export default function Preloader({ onDone }: PreloaderProps) {
         >
             <div className="flex justify-between">
                 <span className="pl-meta meta">Portfolio © 2026</span>
-                <span className="pl-meta meta text-accent">
+                <span className="pl-meta meta text-accent-light">
                     Cargando tinta…
                 </span>
             </div>

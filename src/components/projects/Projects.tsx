@@ -44,9 +44,9 @@ const PROJECTS: Project[] = [
 
 /**
  * Proyectos: cada uno es un spread asimétrico distinto — número
- * vaciado gigante, captura con marco naranja desplazado y título que
- * invade la imagen sobre bandas de papel. Composición espejada en el
- * segundo proyecto.
+ * vaciado gigante, captura con marco de acento desplazado y título
+ * que invade la imagen sobre bandas de papel. Composición espejada en
+ * el segundo proyecto.
  */
 export default function Projects() {
     const rootRef = useRef<HTMLElement>(null)
@@ -143,7 +143,7 @@ export default function Projects() {
                             key={project.index}
                             className="project-spread grid grid-cols-1 items-start gap-10 lg:grid-cols-12"
                         >
-                            {/* captura con marco naranja + número vaciado */}
+                            {/* captura con marco de acento + número vaciado */}
                             <div
                                 className={`relative lg:col-span-7 ${
                                     mirrored ? 'lg:order-2 lg:col-start-6' : ''

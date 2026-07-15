@@ -135,7 +135,7 @@ export default function Hero({ play }: HeroProps) {
 
             {/* bloque de nombre + foto */}
             <div className="relative px-5 md:px-10">
-                {/* foto: recorte editorial con marco naranja desplazado */}
+                {/* foto: recorte editorial con marco de acento desplazado */}
                 <div className="hero-photo hero-photo-parallax absolute top-[46%] right-[6%] z-0 hidden w-[clamp(200px,23vw,330px)] -translate-y-1/2 rotate-2 md:block">
                     <div className="bg-accent absolute inset-0 translate-x-3 translate-y-3" />
                     <div className="relative aspect-3/4 overflow-hidden">
